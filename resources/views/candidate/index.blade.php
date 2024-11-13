@@ -25,7 +25,7 @@
                         style="width: 100%; max-width: 100px; height: auto;">
                     @endempty
                 </td>
-                <td><a href="">Edit</a></td>
+                <td><a href="{{ route('index.edit', $calon->id) }}">Edit</a></td>
                 <td><a href="">Hapus</a></td>
             </tr>
         @endforeach
