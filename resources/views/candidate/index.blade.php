@@ -26,7 +26,13 @@
                     @endempty
                 </td>
                 <td><a href="{{ route('index.edit', $calon->id) }}">Edit</a></td>
-                <td><a href="">Hapus</a></td>
+                <td>
+                    <form action="{{ route('index.destroy', $calon->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>

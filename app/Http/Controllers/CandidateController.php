@@ -100,4 +100,11 @@ class CandidateController extends Controller
         return redirect()->route('index.index');
     }
 
+    public function destroy(Candidate $id) {
+        $id->delete();
+
+        return redirect()->route('index.index')
+        ->with('success', 'Data Berhasil Dihapus');
+    }
+
 }

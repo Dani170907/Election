@@ -15,6 +15,7 @@ Route::get('/candidate', [CandidateController::class, 'index'])->name('index.ind
 Route::get('/candidate/create', [CandidateController::class, 'create'])->name('index.create');
 Route::post('/candidate/add', [CandidateController::class, 'add'])->name('index.add');
 
-
 Route::get('/candidate/edit{id}', [CandidateController::class, 'edit'])->name('index.edit');
 Route::put('/candidate/update{id}', [CandidateController::class, 'update'])->name('index.update');
+
+Route::delete('canididate/delete{id}', [CandidateController::class, 'destroy'])->name('index.destroy');
