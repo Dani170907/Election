@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            // $table->('photo');
+            $table->text('description');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Candidate;
 use Illuminate\Database\Seeder;
-use Database\Seeders\CandidateSeeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CandidateSeeder extends Seeder
@@ -14,10 +13,19 @@ class CandidateSeeder extends Seeder
      */
     public function run(): void
     {
-        Candidate::factory()->create([
-            'name' => 'Liwaul',
-            'description' => 'Visi Misi',
-            'created_at' => now()
+        DB::table('candidates')->insert([
+            [
+                'name' => 'Ahmad Liwaul Hamdi',
+                'description' => 'Menjaga tata tertib sekolah',
+                'photo' => null,
+                'created_at' => now(),
+            ],
+            [
+                'name' => 'Nur Atika',
+                'description' => 'Mengharumkan nama Sekolah',
+                'photo' => null,
+                'created_at' => now(),
+            ]
         ]);
     }
 }
