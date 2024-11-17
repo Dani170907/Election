@@ -11,14 +11,14 @@ class CandidateController extends Controller
     public function index()
     {
         $candidates = Candidate::all(); // Ambil semua data kandidat dari database
-        return view('candidate.index', ['candidate' => $candidates]);
+        return view('candidate.index', ['candidates' => $candidates]);
     }
 
     public function create() {
         return view('candidate.create');
     }
 
-    public function add(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|max:45',
@@ -49,7 +49,7 @@ class CandidateController extends Controller
             'photo' => $fileName,
         ]);
 
-        // return redirect()->route('index.index');
+        return redirect()->route('index.index');
 
         // dd($request->all());
     }
@@ -97,9 +97,8 @@ class CandidateController extends Controller
             'photo' => $fileName,
         ]);
 
-
-        // dd($request->all());
         return redirect()->route('index.index');
+        // dd($request->all());
     }
 
     public function destroy(Candidate $id) {

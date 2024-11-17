@@ -12,23 +12,23 @@
         </thead>
         <tbody>
 
-        @foreach ($candidate as $calon)
+        @foreach ($candidates as $candidate)
             <tr>
             <td>{{ $loop->iteration }}</td>
-                <td>{{ $calon->name }}</td>
-                <td>{{ $calon->description }}</td>
+                <td>{{ $candidate->name }}</td>
+                <td>{{ $candidate->description }}</td>
                 <td>
-                    @empty($calon->photo)
+                    @empty($candidate->photo)
                         <img src="{{ url('image/nophoto.jpg') }}" alt="Foto Kandidat"
                         style="width: 100%; max-width: 100px; height: auto;">
                     @else
-                        <img src="{{ url('image') }}/{{ $calon->photo }}" alt="Foto Kandidat"
+                        <img src="{{ url('image') }}/{{ $candidate->photo }}" alt="Foto Kandidat"
                         style="width: 100%; max-width: 100px; height: 100px;">
                     @endempty
                 </td>
-                <td><a href="{{ route('index.edit', $calon->id) }}">Edit</a></td>
+                <td><a href="{{ route('index.edit', $candidate->id) }}">Edit</a></td>
                 <td>
-                    <form action="{{ route('index.destroy', $calon->id) }}" method="post">
+                    <form action="{{ route('index.destroy', $candidate->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Delete</button>

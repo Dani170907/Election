@@ -33,7 +33,7 @@ class AuthController extends Controller
 
         $access = $request->only('nis', 'password');
         if(Auth::attempt($access)) {
-            return redirect()->intended('candidate')
+            return redirect()->intended('voter')
             ->withSuccess('Berhasil Login');
         }
 
