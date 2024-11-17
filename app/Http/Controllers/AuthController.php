@@ -54,7 +54,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('candidate')->withSuccess('Berhasil Login');
+        return redirect('voter')->withSuccess('Berhasil Login');
 
         // dd($request->all());
     }
@@ -64,10 +64,11 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             // Ambil semua data kandidat dari database
-            $candidates = Candidate::all();
+            // $candidates = Candidate::all();
 
             // Kirimkan data kandidat ke view
-            return view('candidate.index', ['candidate' => $candidates]);
+            // return view('candidate.index', ['candidates' => $candidates]);
+            return view('admin.index');
         }
 
         return redirect('login')->withSuccess('Kamu tidak memiliki akses');

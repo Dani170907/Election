@@ -1,7 +1,7 @@
 <div>
     <h1>Tambah Data</h1><br>
 
-    <form action="{{ route('index.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('candidate.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="name">Nama kandidat</label><br>
         <input type="text" name="name" id="name"><br>

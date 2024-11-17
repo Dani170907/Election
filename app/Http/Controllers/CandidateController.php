@@ -49,7 +49,7 @@ class CandidateController extends Controller
             'photo' => $fileName,
         ]);
 
-        return redirect()->route('index.index');
+        return redirect()->route('candidate.index');
 
         // dd($request->all());
     }
@@ -97,14 +97,14 @@ class CandidateController extends Controller
             'photo' => $fileName,
         ]);
 
-        return redirect()->route('index.index');
+        return redirect()->route('candidate.index');
         // dd($request->all());
     }
 
     public function destroy(Candidate $id) {
         $id->delete();
 
-        return redirect()->route('index.index')
+        return redirect()->route('candidate.index')
         ->with('success', 'Data Berhasil Dihapus');
     }
 
