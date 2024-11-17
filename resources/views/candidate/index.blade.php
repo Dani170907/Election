@@ -11,6 +11,7 @@
             </tr>
         </thead>
         <tbody>
+
         @foreach ($candidate as $calon)
             <tr>
             <td>{{ $loop->iteration }}</td>
@@ -22,7 +23,7 @@
                         style="width: 100%; max-width: 100px; height: auto;">
                     @else
                         <img src="{{ url('image') }}/{{ $calon->photo }}" alt="Foto Kandidat"
-                        style="width: 100%; max-width: 100px; height: auto;">
+                        style="width: 100%; max-width: 100px; height: 100px;">
                     @endempty
                 </td>
                 <td><a href="{{ route('index.edit', $calon->id) }}">Edit</a></td>
@@ -35,6 +36,8 @@
                 </td>
             </tr>
         @endforeach
+
         </tbody>
     </table>
+    <a href="{{ route('logout') }}">logout</a>
 </div>

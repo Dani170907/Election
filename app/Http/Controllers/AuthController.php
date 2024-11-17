@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-  
-use Hash;
-use Session;
+
 use App\Models\User;
+use App\Models\Candidate;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -26,11 +27,11 @@ class AuthController extends Controller
     public function postLogin(Request $request): RedirectResponse
     {
         $request->validate([
-            'email' => 'required',
+            'nis' => 'required',
             'password' => 'required',
         ]);
 
-        $access = $request->only('email', 'password');
+        $access = $request->only('nis', 'password');
         if(Auth::attempt($access)) {
             return redirect()->intended('candidate')
             ->withSuccess('Berhasil Login');
@@ -43,26 +44,30 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'nis' => 'required|unique:users',
             'password' => 'required|min:3|confirmed',
         ]);
 
         $data = $request->all();
+
         $user = $this->create($data);
 
         Auth::login($user);
 
-
         return redirect('candidate')->withSuccess('Berhasil Login');
 
-        // dd($request);
+        // dd($request->all());
     }
 
 
     public function dashboard()
     {
-        if(Auth::check()) {
-            return view('candidate.index');
+        if (Auth::check()) {
+            // Ambil semua data kandidat dari database
+            $candidates = Candidate::all();
+
+            // Kirimkan data kandidat ke view
+            return view('candidate.index', ['candidate' => $candidates]);
         }
 
         return redirect('login')->withSuccess('Kamu tidak memiliki akses');
@@ -72,10 +77,13 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'nis' => $data['nis'],
+            'password' => Hash::make($data['password']),
         ]);
+
+        // dd($data);
     }
+
 
     public function logout()
     {

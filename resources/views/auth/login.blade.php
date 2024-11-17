@@ -2,27 +2,29 @@
     <h2>halaman Login</h2>
     <form action="{{ route('login.post') }}" method="post">
         @csrf
-        @session('error')
-            {{ $value }}
-        @endsession
 
-        <label for="email">{{ __('Alamat Email') }}</label><br>
-        <input type="email" name="email" id="email" required><br><br>
-        @error('email')
-            {{ $massage }}
+        @if(session('error'))
+            <p style="color: red;">{{ session('error') }}</p>
+        @endif
+
+        <label for="nis">{{ __('NIS') }}</label><br>
+        <input type="text" name="nis" id="nis" required><br><br>
+        @error('nis')
+            <p style="color: red;">{{ $message }}</p>
         @enderror
-        
+
         <label for="password">{{ __('Password') }}</label><br>
         <input type="password" name="password" id="password" required><br><br>
         @error('password')
-            {{ $massage }}
+            <p style="color: red;">{{ $message }}</p>
         @enderror
+
 
         <button type="submit">
             {{ __('Login') }}
         </button><br>
         <p>
-            tidak punya akun?
+            Tidak punya akun?
             <a href="{{ route('register') }}">Daftar</a>
         </p>
     </form>

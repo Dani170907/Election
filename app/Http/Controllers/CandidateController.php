@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
 {
-    public function index() {
-        $candidate = Candidate::all();
-        return view('candidate.index', [
-            'candidate' => $candidate,
-        ]);
+    public function index()
+    {
+        $candidates = Candidate::all(); // Ambil semua data kandidat dari database
+        return view('candidate.index', ['candidate' => $candidates]);
     }
 
     public function create() {
@@ -50,7 +49,9 @@ class CandidateController extends Controller
             'photo' => $fileName,
         ]);
 
-        return redirect()->route('index.index');
+        // return redirect()->route('index.index');
+
+        // dd($request->all());
     }
 
     public function edit(Candidate $id)
@@ -78,7 +79,6 @@ class CandidateController extends Controller
             $oldPhoto = $photo1->photo;
         }
 
-        //jika foto sudah ada yang terupload
         if(!empty($request->photo)) {
             // maka jalankan proses
             if(!empty($oldPhoto->photo)) unlink(public_path('image' . $oldPhoto->photo));
@@ -97,6 +97,8 @@ class CandidateController extends Controller
             'photo' => $fileName,
         ]);
 
+
+        // dd($request->all());
         return redirect()->route('index.index');
     }
 

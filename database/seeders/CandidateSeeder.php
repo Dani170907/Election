@@ -16,13 +16,13 @@ class CandidateSeeder extends Seeder
         DB::table('candidates')->insert([
             [
                 'name' => 'Ahmad Liwaul Hamdi',
-                'description' => 'Menjaga tata tertib sekolah',
+                'description' => 'Menjaga tata tertib di lingkungan Sekolah',
                 'photo' => null,
                 'created_at' => now(),
             ],
             [
                 'name' => 'Nur Atika',
-                'description' => 'Mengharumkan nama Sekolah',
+                'description' => 'Mengharumkan nama baik Sekolah',
                 'photo' => null,
                 'created_at' => now(),
             ]
