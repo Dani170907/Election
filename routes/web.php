@@ -32,3 +32,6 @@ Route::delete('candidate/delete{id}', [CandidateController::class, 'destroy'])->
 // Halaman Voters
 Route::get('/voter', [VoteController::class, 'index'])->name('voter.index');
 Route::post('/voter', [VoteController::class, 'store'])->name('voter.store');
+
+// Halaman hasil Voting
+Route::get('/results', [VoteController::class, 'results'])->name('voter.results');

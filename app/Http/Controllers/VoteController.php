@@ -35,4 +35,13 @@ class VoteController extends Controller
 
         return redirect()->route('voter.index')->with('success', 'Vote berhasil disimpan!');
     }
+
+    public function results()
+    {
+        // ambil semua data dari candidates
+        $candidates = Candidate::all();
+        // ambil data vote yang dilakukan user
+        $results = Candidate::withCount('votes')->orderBy('votes_count', 'desc')->get();
+        return view('voter.results', compact('candidates', 'results'));
+    }
 }
