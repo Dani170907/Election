@@ -12,6 +12,9 @@
 
         <label for="photo">Foto: </label><br>
         <input type="file" id="photo" name="photo"><br>
+        @error('photo')
+            {{ $message }}
+        @enderror
 
         @if (!empty($id->photo))
             <img src="{{ url('image/' . $id->photo) }}" alt="Foto Kandidat"

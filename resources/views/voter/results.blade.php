@@ -1,3 +1,5 @@
+@dd($results)
+
 <div>
     <h1>Hasil Voting Sementara</h1>
     <table>

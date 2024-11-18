@@ -52,7 +52,7 @@ class VoteController extends Controller
     // public function reset() 
     // {
     //     $id->delete();
-
+    
     //     return redirect()->route('candidate.index')
     //     ->with('success', 'Data Vote berhasil di Reset');
     // }
