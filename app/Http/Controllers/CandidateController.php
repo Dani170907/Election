@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class CandidateController extends Controller
 {
+
+    // menampillkan halaman
     public function index()
     {
         $candidates = Candidate::all(); // Ambil semua data kandidat dari database
@@ -18,18 +20,19 @@ class CandidateController extends Controller
         return view('candidate.create');
     }
 
+    // mengirimkan data baru dengan validasi
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|max:45',
             'description' => 'required|min:5',
-            'photo' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'photo' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:4096',
         ],
         [
             'name.required' => 'Nama wajib diisi',
             'name.max' => 'Nama maksimal 45 karakter',
-            'photo.max' => 'Foto maksimal 2 Mb',
-            'photo.mimes' => 'File ekstensi hanya bisa jpg,png,jpeg,gif, svg',
+            'photo.max' => 'Foto maksimal 4 Mb',
+            'photo.mimes' => 'File ekstensi hanya bisa jpg, png, jpeg, gif, svg',
             'photo.image' => 'File harus berbentuk image'
         ]);
 
@@ -54,12 +57,14 @@ class CandidateController extends Controller
         // dd($request->all());
     }
 
+    // mengedit data dengan validasi
     public function edit(Candidate $id)
     {
         return view('candidate.edit', compact('id'));
     }
 
-    public function update(Request $request, string $id) {
+    public function update(Request $request, string $id) 
+    {
         $request->validate([
             'name' => 'required|max:45',
             'description' => 'required|min:5',
@@ -101,7 +106,9 @@ class CandidateController extends Controller
         // dd($request->all());
     }
 
-    public function destroy(Candidate $id) {
+    // menghapus data
+    public function destroy(Candidate $id) 
+    {
         $id->delete();
 
         return redirect()->route('candidate.index')

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
 {
+
+    // menampilkan halaman
     public function index()
     {
         $candidates = Candidate::all();
@@ -17,6 +19,7 @@ class VoteController extends Controller
         return view('voter.index', compact('candidates', 'userVote'));
     }
 
+    // mengirimkan data voter
     public function store(Request $request)
     {
         $request->validate([
@@ -36,6 +39,7 @@ class VoteController extends Controller
         return redirect()->route('voter.index')->with('success', 'Vote berhasil disimpan!');
     }
 
+    // menampilkan dan mengirimkan data hasil voting
     public function results()
     {
         // ambil semua data dari candidates
@@ -44,4 +48,12 @@ class VoteController extends Controller
         $results = Candidate::withCount('votes')->orderBy('votes_count', 'desc')->get();
         return view('voter.results', compact('candidates', 'results'));
     }
+
+    // public function reset() 
+    // {
+    //     $id->delete();
+
+    //     return redirect()->route('candidate.index')
+    //     ->with('success', 'Data Vote berhasil di Reset');
+    // }
 }

@@ -16,5 +16,10 @@
             @endforeach
         </tbody>
     </table>
+    {{-- <form action="{{ route('voter.reset', $candidate->id) }}" method="post">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Reset Data Vote</button>
+    </form> --}}
 
 </div>

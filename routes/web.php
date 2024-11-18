@@ -16,6 +16,7 @@ Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.pos
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 
+// grup untuk semua halaman
 Route::middleware(['auth'])->group(function (){
 
     // Dashboard dan Logout
@@ -30,9 +31,10 @@ Route::middleware(['auth'])->group(function (){
     Route::put('/candidate/update{id}', [CandidateController::class, 'update'])->name('candidate.update');
     Route::delete('candidate/delete{id}', [CandidateController::class, 'destroy'])->name('candidate.destroy');
 
-    // Halaman Voters
+    // Halaman Voters (user memilih satu kandidat)
     Route::get('/voter', [VoteController::class, 'index'])->name('voter.index');
     Route::post('/voter', [VoteController::class, 'store'])->name('voter.store');
+    // Route::delete('/voter/reset{id}', [VoteController::class, 'reset'])->name('voter.reset');
 
     // Halaman hasil Voting
     Route::get('/results', [VoteController::class, 'results'])->name('voter.results');

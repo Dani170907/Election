@@ -23,7 +23,7 @@
                         style="width: 100%; max-width: 100px; height: auto;">
                     @else
                         <img src="{{ url('image') }}/{{ $candidate->photo }}" alt="Foto Kandidat"
-                        style="width: 100%; max-width: 100px; height: 100px;">
+                        style="width: 100%; max-width: 100px; height: 100px; object-fit: cover;">
                     @endempty
                 </td>
                 <td><a href="{{ route('candidate.edit', $candidate->id) }}">Edit</a></td>

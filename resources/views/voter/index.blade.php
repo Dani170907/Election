@@ -12,14 +12,18 @@
     <ul>
         @foreach($candidates as $candidate)
             <li>
-                <strong>{{ $candidate->name }}</strong><br>
+                <strong>
+                    No Urut:
+                    {{ $loop->iteration }}<br>
+                    {{ $candidate->name }}
+                </strong><br>
                 {{ $candidate->description }}<br>
                 @empty($candidate->photo)
                     <img src="{{ url('image/nophoto.jpg') }}" alt="Foto Kandidat"
-                    style="width: 100%; max-width: 100px; height: auto;">
+                    style="width: 100%; max-width: 100px; max-height: 100px; object-fit: cover">
                 @else
                     <img src="{{ url('image') }}/{{ $candidate->photo }}" alt="Foto Kandidat"
-                    style="width: 100%; max-width: 100px; height: 100px;">
+                    style="width: 100%; max-width: 100px; height: 100px; object-fit: cover;">
                 @endempty
             <br>
 
@@ -38,6 +42,7 @@
         @endforeach
     </ul>
     <ul>
-        <li><a href="{{ route('logout') }}">Logout</a></li>
+        <li><a href="{{ route('voter.results') }}">Lihat Data Sementara</a></li>
+        <li><a href="{{ route('logout') }}">Keluar</a></li>
     </ul>
 </div>
