@@ -2,6 +2,11 @@
 
 <div>
     <h1>Hasil Voting Sementara</h1>
+    @if(session('error'))
+        <div>
+            {{ session('error') }}
+        </div>
+    @endif
     <table>
         <thead>
             <tr>
@@ -30,5 +35,4 @@
         @method('DELETE')
         <button type="submit">Reset Data Vote</button>
     </form> --}}
-
 </div>

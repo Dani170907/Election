@@ -20,7 +20,7 @@ Route::post('post-registration', [AuthController::class, 'postRegistration'])->n
 Route::middleware(['auth'])->group(function (){
 
     // Dashboard dan Logout
-    Route::get('admin', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::get('admin', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('admin');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     // Halaman Kandidat
