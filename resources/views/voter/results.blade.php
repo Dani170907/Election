@@ -1,4 +1,4 @@
-@dd($results)
+{{-- @dd($results) --}}
 
 <div>
     <h1>Hasil Voting Sementara</h1>
@@ -7,6 +7,7 @@
             <tr>
                 <th>Kandidat</th>
                 <th>Jumlah Suara</th>
+                <th>Persentase</th>
             </tr>
         </thead>
         <tbody>
@@ -14,6 +15,12 @@
                 <tr>
                     <td>{{ $candidate->name }}</td>
                     <td>{{ $candidate->votes_count }}</td>
+                    @if ($candidate->votes_count > 0)
+                        <td>{{ $candidate->votes_count / $totalVotes * 100 }}%</td>
+                    @else
+                        <td>0%</td>
+                    @endif
+
                 </tr>
             @endforeach
         </tbody>

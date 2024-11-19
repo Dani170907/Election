@@ -63,17 +63,17 @@ class CandidateController extends Controller
         return view('candidate.edit', compact('id'));
     }
 
-    public function update(Request $request, string $id) 
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'name' => 'required|max:45',
             'description' => 'required|min:5',
-            'photo' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'photo' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:4096',
         ],
         [
             'name.required' => 'Nama wajib diisi',
             'name.max' => 'Nama maksimal 45 karakter',
-            'photo.max' => 'Foto maksimal 2 Mb',
+            'photo.max' => 'Foto maksimal 4 Mb',
             'photo.mimes' => 'File ekstensi hanya bisa jpg,png,jpeg,gif,svg',
             'photo.image' => 'File harus berbentuk image'
         ]);
@@ -107,7 +107,7 @@ class CandidateController extends Controller
     }
 
     // menghapus data
-    public function destroy(Candidate $id) 
+    public function destroy(Candidate $id)
     {
         $id->delete();
 

@@ -44,15 +44,21 @@ class VoteController extends Controller
     {
         // ambil semua data dari candidates
         $candidates = Candidate::all();
+
         // ambil data vote yang dilakukan user
-        $results = Candidate::withCount('votes')->orderBy('votes_count', 'desc')->get();
-        return view('voter.results', compact('candidates', 'results'));
+        $results = Candidate::withCount('votes')
+                    ->orderBy('votes_count', 'desc')
+                    ->get();
+
+        $totalVotes = $results->sum('votes_count');
+
+        return view('voter.results', compact('candidates', 'results', 'totalVotes'));
     }
 
-    // public function reset() 
+    // public function reset()
     // {
     //     $id->delete();
-    
+
     //     return redirect()->route('candidate.index')
     //     ->with('success', 'Data Vote berhasil di Reset');
     // }
