@@ -21,7 +21,7 @@
                     <td>{{ $candidate->name }}</td>
                     <td>{{ $candidate->votes_count }}</td>
                     @if ($candidate->votes_count > 0)
-                        <td>{{ $candidate->votes_count / $totalVotes * 100 }}%</td>
+                        <td>{{ Str::limit(($candidate->votes_count / $totalVotes * 100), 4) }}%</td>
                     @else
                         <td>0%</td>
                     @endif

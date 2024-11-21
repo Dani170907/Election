@@ -16,20 +16,27 @@ Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.pos
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 
+// Route untuk public view
+Route::get('/public-results', [VoteController::class, 'publicResults'])->name('public.results');
+// testing API
+Route::get('/api-results', [VoteController::class, 'resultsApi'])->name('api.results');
+
 // grup untuk semua halaman
 Route::middleware(['auth'])->group(function (){
 
-    // Dashboard dan Logout
-    Route::get('admin', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('admin');
-    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::middleware(['admin'])->group(function () {
+        // Dashboard dan Logout
+        Route::get('admin', [AuthController::class, 'dashboard'])->name('dashboard');
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Halaman Kandidat
-    Route::get('/candidate', [CandidateController::class, 'index'])->name('candidate.index');
-    Route::get('/candidate/create', [CandidateController::class, 'create'])->name('candidate.create');
-    Route::post('/candidate/store', [CandidateController::class, 'store'])->name('candidate.store');
-    Route::get('/candidate/edit{id}', [CandidateController::class, 'edit'])->name('candidate.edit');
-    Route::put('/candidate/update{id}', [CandidateController::class, 'update'])->name('candidate.update');
-    Route::delete('candidate/delete{id}', [CandidateController::class, 'destroy'])->name('candidate.destroy');
+        // Halaman Kandidat
+        Route::get('/candidate', [CandidateController::class, 'index'])->name('candidate.index');
+        Route::get('/candidate/create', [CandidateController::class, 'create'])->name('candidate.create');
+        Route::post('/candidate/store', [CandidateController::class, 'store'])->name('candidate.store');
+        Route::get('/candidate/edit{id}', [CandidateController::class, 'edit'])->name('candidate.edit');
+        Route::put('/candidate/update{id}', [CandidateController::class, 'update'])->name('candidate.update');
+        Route::delete('candidate/delete{id}', [CandidateController::class, 'destroy'])->name('candidate.destroy');
+    });
 
     // Halaman Voters (user memilih satu kandidat)
     Route::get('/voter', [VoteController::class, 'index'])->name('voter.index');

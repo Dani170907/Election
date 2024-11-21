@@ -46,4 +46,3 @@
         <li><a href="{{ route('logout') }}">Keluar</a></li>
     </ul>
 </div>
-0

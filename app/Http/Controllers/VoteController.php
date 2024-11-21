@@ -55,6 +55,42 @@ class VoteController extends Controller
         return view('voter.results', compact('candidates', 'results', 'totalVotes'));
     }
 
+    // mengirimkan data hasil voting ke API
+    public function resultsApi()
+    {
+        // ambil semua data dari candidates dan hitung data votes
+        $results = Candidate::withCount('votes')
+                    ->orderBy('votes_count', 'desc')
+                    ->get();
+
+        $totalVotes = $results->sum('votes_count');
+
+        $data = $results->map(function ($candidate) use ($totalVotes) {
+            return [
+                'name' => $candidate->name,
+                'votes_count' => $candidate->votes_count,
+                'percentage' => ($candidate->votes_count > 0) ? ($candidate->votes_count / $totalVotes * 100) : 0,
+            ];
+        });
+
+        return response()->json([
+            'success' => true,
+            'massage' => 'Data voting berhasil didapatkan',
+            'statusCode' => 200,
+            'data'=> $data,
+            'total_votes' => $totalVotes,
+
+        ]);
+    }
+
+    // menampilkan data results API ke public
+    public function publicResults()
+    {
+        return view('public.results');
+    }
+
+
+
     // public function reset()
     // {
     //     $id->delete();
