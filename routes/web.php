@@ -17,8 +17,8 @@ Route::get('registration', [AuthController::class, 'registration'])->name('regis
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 
 // testing API
-Route::get('/api-results', [VoteController::class, 'resultsApi'])->name('api.results');
-Route::get('api/candidate/{id}', [VoteController::class, 'candidateApi']);
+Route::get('/api/results', [VoteController::class, 'resultsApi'])->name('api.results');
+Route::get('/api/candidate/{id}', [VoteController::class, 'candidateApi'])->name('api.candidate');
 
 // grup untuk semua halaman
 Route::middleware(['auth'])->group(function (){
