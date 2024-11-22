@@ -70,7 +70,7 @@ class VoteController extends Controller
                 'id' => $candidate->id,
                 'name' => $candidate->name,
                 'votes_count' => $candidate->votes_count,
-                'percentage' => ($candidate->votes_count > 0) ? ($candidate->votes_count / $totalVotes * 100) : 0,
+                'percentage' => ($candidate->votes_count > 0) ?($candidate->votes_count / $totalVotes * 100) : 0,
             ];
         });
 
@@ -106,7 +106,7 @@ class VoteController extends Controller
             'massage' => 'Data detail kandidat berhasil didapatkan',
             'statusCode' => 200,
             'data' => [
-                'id' => $candidate->id,
+                'id' => $candidate->id, 
                 'name' => $candidate->name,
                 'total_votes' => $candidate->votes_count,
                 'persentage' => $persentage . '%',
