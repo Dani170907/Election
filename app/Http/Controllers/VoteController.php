@@ -67,6 +67,7 @@ class VoteController extends Controller
 
         $data = $results->map(function ($candidate) use ($totalVotes) {
             return [
+                'id' => $candidate->id,
                 'name' => $candidate->name,
                 'votes_count' => $candidate->votes_count,
                 'percentage' => ($candidate->votes_count > 0) ? ($candidate->votes_count / $totalVotes * 100) : 0,
@@ -84,9 +85,33 @@ class VoteController extends Controller
     }
 
     // menampilkan data results API ke public
-    public function publicResults()
+    public function candidateApi($id)
     {
-        return view('public.results');
+        $candidate = Candidate::withCount('votes')->find($id);
+
+        if (!$candidate) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Candidate tidak ditemukan',
+                'statusCode' => 404,
+            ]);
+        }
+
+        $totalVotes = Candidate::withCount('votes')->get()->sum('votes_count');
+
+        $persentage = ($candidate->votes_count > 0) ? ($candidate->votes_count / $totalVotes * 100) : 0;
+
+        return response()->json([
+            'success' => true,
+            'massage' => 'Data detail kandidat berhasil didapatkan',
+            'statusCode' => 200,
+            'data' => [
+                'id' => $candidate->id,
+                'name' => $candidate->name,
+                'total_votes' => $candidate->votes_count,
+                'persentage' => $persentage . '%',
+            ],
+        ]);
     }
 
 
