@@ -1,7 +1,16 @@
 {{-- @dd($results) --}}
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite(['resources/css/app.css','resources/js/app.js'])
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <title>Halaman Home</title>
+</head>
 
-<div>
-    <h1>Hasil Voting Sementara</h1>
+    <h1 class="mt-10 text-2xl font-extrabold text-center">Hasil Voting Sementara</h1>
     @if(session('error'))
         <div>
             {{ session('error') }}
