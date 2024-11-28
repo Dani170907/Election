@@ -65,12 +65,7 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        if (Auth::check()) {
-            // Ambil semua data kandidat dari database
-            // $candidates = Candidate::all();
-
-            // Kirimkan data kandidat ke view
-            // return view('candidate.index', ['candidates' => $candidates]);
+        if (Auth::check() && Auth::user()->role === 'admin') {
             return view('admin.index');
         }
 
@@ -83,6 +78,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'nis' => $data['nis'],
             'password' => Hash::make($data['password']),
+            'role' => 'student',
         ]);
 
         // dd($data);

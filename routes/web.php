@@ -22,11 +22,11 @@ Route::get('/api/candidate/{id}', [VoteController::class, 'candidateApi'])->name
 
 // grup untuk semua halaman
 Route::middleware(['auth'])->group(function (){
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::middleware(['admin'])->group(function () {
         // Dashboard dan Logout
         Route::get('admin', [AuthController::class, 'dashboard'])->name('dashboard');
-        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
         // Halaman Kandidat
         Route::get('/candidate', [CandidateController::class, 'index'])->name('candidate.index');
