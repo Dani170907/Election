@@ -8,10 +8,13 @@
     <title>{{ $title ?? 'Sistem Voting' }}</title>
 </head>
 <body>
+
+    <!-- Navigasi -->
     <x-header>
         {{ $title }}
     </x-header>
 
+    <!-- Konten -->
     <main>
         {{ $slot }}
     </main>
