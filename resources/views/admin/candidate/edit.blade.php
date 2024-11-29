@@ -1,6 +1,6 @@
 <div>
     <h1>Edit Data</h1>
-    <form action="{{ route('candidate.update', $id->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('admin.candidate.update', $id->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
 

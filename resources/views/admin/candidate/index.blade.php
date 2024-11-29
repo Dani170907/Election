@@ -1,5 +1,8 @@
+<x-layout>
+    <x-slot:title>{{ $title }}</x-slot:title>
+</x-layout>
 <div>
-    <a href="{{ route('candidate.create') }}">Tambah Kandidat</a>
+    <a href="{{ route('admin.candidate.create') }}">Tambah Kandidat</a>
     <table border="1px">
         <thead>
             <tr>
@@ -26,9 +29,9 @@
                         style="width: 100%; max-width: 100px; height: 100px; object-fit: cover;">
                     @endempty
                 </td>
-                <td><a href="{{ route('candidate.edit', $candidate->id) }}">Edit</a></td>
+                <td><a href="{{ route('admin.candidate.edit', $candidate->id) }}">Edit</a></td>
                 <td>
-                    <form action="{{ route('candidate.destroy', $candidate->id) }}" method="post">
+                    <form action="{{ route('admin.candidate.destroy', $candidate->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Delete</button>

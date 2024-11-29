@@ -6,6 +6,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoteController;
 use App\Http\Controllers\CandidateController;
 
+// $admin = 'admin';
+// $candidate = 'candidate';
+// $voter = 'voter';
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,12 +33,12 @@ Route::middleware(['auth'])->group(function (){
         Route::get('admin', [AuthController::class, 'dashboard'])->name('dashboard');
 
         // Halaman Kandidat
-        Route::get('/candidate', [CandidateController::class, 'index'])->name('candidate.index');
-        Route::get('/candidate/create', [CandidateController::class, 'create'])->name('candidate.create');
-        Route::post('/candidate/store', [CandidateController::class, 'store'])->name('candidate.store');
-        Route::get('/candidate/edit{id}', [CandidateController::class, 'edit'])->name('candidate.edit');
-        Route::put('/candidate/update{id}', [CandidateController::class, 'update'])->name('candidate.update');
-        Route::delete('candidate/delete{id}', [CandidateController::class, 'destroy'])->name('candidate.destroy');
+        Route::get('admin/candidate', [CandidateController::class, 'index', 'title' => 'Halaman Kandidat'])->name('admin.candidate.index');
+        Route::get('admin/candidate/create', [CandidateController::class, 'create'])->name('admin.candidate.create');
+        Route::post('admin/candidate/store', [CandidateController::class, 'store'])->name('admin.candidate.store');
+        Route::get('admin/candidate/edit{id}', [CandidateController::class, 'edit'])->name('admin.candidate.edit');
+        Route::put('admin/candidate/update{id}', [CandidateController::class, 'update'])->name('admin.candidate.update');
+        Route::delete('admin/candidate/delete{id}', [CandidateController::class, 'destroy'])->name('admin.candidate.destroy');
     });
 
     // Halaman Voters (user memilih satu kandidat)

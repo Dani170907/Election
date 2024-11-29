@@ -2,8 +2,9 @@
     <ul>
         <li>
             <p>
-                Daftar Kandidat
-                <a href="{{ route('candidate.index') }}">candidates</a>
+
+                Daftar Kandidate
+                <a href="{{ route('admin.candidate.index') }}">candidates</a>
             </p>
         </li>
         <li>

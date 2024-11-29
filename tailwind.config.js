@@ -12,8 +12,5 @@ export default {
     theme: {
       extend: {},
     },
-    plugins: [
-        require('flowbite/plugin'),
-        require('flowbite-typography')
-    ],
-  }
+    plugins: [require("@tailwindcss/typography"), require("daisyui")],
+}

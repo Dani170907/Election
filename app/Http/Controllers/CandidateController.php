@@ -13,11 +13,14 @@ class CandidateController extends Controller
     public function index()
     {
         $candidates = Candidate::all(); // Ambil semua data kandidat dari database
-        return view('candidate.index', ['candidates' => $candidates]);
+        return view('admin.candidate.index', [
+            'candidates' => $candidates,
+            'title' => 'Daftar Kandidat'
+        ]);
     }
 
     public function create() {
-        return view('candidate.create');
+        return view('admin.candidate.create');
     }
 
     // mengirimkan data baru dengan validasi
@@ -52,7 +55,7 @@ class CandidateController extends Controller
             'photo' => $fileName,
         ]);
 
-        return redirect()->route('candidate.index');
+        return redirect()->route('admin.candidate.index');
 
         // dd($request->all());
     }
@@ -60,7 +63,7 @@ class CandidateController extends Controller
     // mengedit data dengan validasi
     public function edit(Candidate $id)
     {
-        return view('candidate.edit', compact('id'));
+        return view('admin.candidate.edit', compact('id'));
     }
 
     public function update(Request $request, string $id)
@@ -102,7 +105,7 @@ class CandidateController extends Controller
             'photo' => $fileName,
         ]);
 
-        return redirect()->route('candidate.index');
+        return redirect()->route('admin.candidate.index');
         // dd($request->all());
     }
 
@@ -111,7 +114,7 @@ class CandidateController extends Controller
     {
         $id->delete();
 
-        return redirect()->route('candidate.index')
+        return redirect()->route('admin.candidate.index')
         ->with('success', 'Data Berhasil Dihapus');
     }
 

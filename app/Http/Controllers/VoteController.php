@@ -52,7 +52,10 @@ class VoteController extends Controller
 
         $totalVotes = $results->sum('votes_count');
 
-        return view('voter.results', compact('candidates', 'results', 'totalVotes'));
+        return view('voter.results', compact('candidates', 'results', 'totalVotes'), [
+            'candidate'=> $candidates,
+            'title' => 'Hasil Voting Sementara',
+        ]);
     }
 
     // mengirimkan data hasil voting ke API
@@ -106,7 +109,7 @@ class VoteController extends Controller
             'massage' => 'Data detail kandidat berhasil didapatkan',
             'statusCode' => 200,
             'data' => [
-                'id' => $candidate->id, 
+                'id' => $candidate->id,
                 'name' => $candidate->name,
                 'total_votes' => $candidate->votes_count,
                 'persentage' => $persentage . '%',
