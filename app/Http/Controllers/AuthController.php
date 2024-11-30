@@ -65,6 +65,11 @@ class AuthController extends Controller
             'name' => 'required',
             'nis' => 'required|unique:users',
             'password' => 'required|min:3|confirmed',
+        ],
+        [
+            'nis.unique'=> 'NIS sudah terdaftar, silahkan login untuk masuk',
+            'password.min'=> 'Password minimal 3 karakter',
+            'password.confirmed'=> 'Konfirmasi password tidak cocok',
         ]);
 
         $data = $request->all();
