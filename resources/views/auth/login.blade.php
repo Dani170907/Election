@@ -1,35 +1,42 @@
 <x-layout>
 <x-slot:title>
-    {{ $title }}
+
 </x-slot:title>
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
 
-            <h2 class="text-3xl font-semibold text-center">Login</h2>
+            <h2 class="text-3xl font-semibold text-center">{{ $title }}</h2>
             <form action="{{ route('login.post') }}" method="post">
                 @csrf
 
                 @if(session('error'))
-                <p style="color: red;">{{ session('error') }}</p>
+                    <div class="p-3 text-red-500 rounded alert alert-error bg-red-50">
+                        {{ session('error') }}
+                    </div>
                 @endif
 
                 <div class="form-control">
-                    <label for="nis">
-                        <span class="label-text">{{ __('NIS') }}</span>
-
-                    </label>
-                    <div class="input-group">
-                        <input type="text" class="w-full max-w-lg input input-bordered" name="nis" id="nis" required placeholder="Masukkan NIS">
-                    </div>
+                    <span class="text-lg label-text">{{ __('NIS') }}</span>
+                        <div class="input-group">
+                            <label for="nis" class="flex items-center gap-2 input input-bordered">
+                                <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 16 16"
+                                fill="currentColor"
+                                class="w-4 h-4 opacity-70">
+                                <path
+                                  d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
+                              </svg>
+                                <input type="text" class="grow" name="nis" id="nis" required placeholder="Masukkan NIS" />
+                            </label>
+                        </div>
                     @error('nis')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-3 form-control">
-                    <span class="label-text">
-                        {{ __('Password') }}
-                    </span>
+                    <span class="text-lg label-text">{{ __('Password') }}</span>
                     <div class="input-group">
                         <label for="password" class="flex items-center gap-2 input input-bordered">
                             <svg
@@ -52,10 +59,12 @@
                         {{ __('Login') }}
                     </button>
                 </div>
-                <p>
+                <div class="mt-4 text-sm text-center text-gray-600">
                     Tidak punya akun?
-                    <a href="{{ route('register') }}">Daftar</a>
-                </p>
+                    <a href="{{ route('register') }}"class="ml-1 font-semibold text-blue-500 hover:text-blue-600">
+                        Daftar
+                    </a>
+                </div>
             </form>
         </div>
     </div>

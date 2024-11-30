@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <!-- Navigasi -->
+    <!-- Navigation -->
     <x-header>
         {{ $title }}
     </x-header>

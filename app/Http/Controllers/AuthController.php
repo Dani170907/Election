@@ -33,13 +33,27 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        // ambil data user berdasarkan nis
+        $user = User::where('nis', $request->nis)->first();
+
+        // cek keberadaan user
+        if (!$user) {
+            return redirect('login')->withError('NIS yang Anda masukkan salah');
+        }
+
+        // compare password yang di input dengan yang ada di database
+        if (!Hash::check($request->password, $user->password)) {
+            return redirect('login')->withError('Password yang Anda masukkan salah');
+        }
+
         $access = $request->only('nis', 'password');
         if(Auth::attempt($access)) {
-            // if() {
-
-            // }
-            return redirect()->intended('voter')
-            ->withSuccess('Berhasil Login');
+            if ($user->role === 'student') {
+                return redirect()->intended('voter')
+                ->withSuccess('Selamat Datang' . $user->name);
+            } else if ($user->role === 'admin') {
+                return redirect()->intended('admin')->withSuccess('Berhasil Login');
+            }
         }
 
         return redirect('login')->withError('Kamu tidak memilliki Akses Masuk');
