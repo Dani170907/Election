@@ -73,7 +73,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('voter')->withSuccess('Berhasil Login');
+        return redirect('voter')->withSuccess('Selamat Datang ' . $user->name);
 
         // dd($request->all());
     }
@@ -99,7 +99,6 @@ class AuthController extends Controller
 
         // dd($data);
     }
-
 
     public function logout()
     {
