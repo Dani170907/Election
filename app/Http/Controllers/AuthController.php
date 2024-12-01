@@ -87,7 +87,10 @@ class AuthController extends Controller
     public function dashboard()
     {
         if (Auth::check() && Auth::user()->role === 'admin') {
-            return view('admin.index');
+            $results = Candidate::withCount('votes')->orderBy('votes_count', 'desc')->get();
+            $totalVotes = $results->sum('votes_count');
+            
+            return view('admin.index', compact('results', 'totalVotes'));
         }
 
         return redirect('login')->withSuccess('Kamu tidak memiliki akses');

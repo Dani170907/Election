@@ -1,18 +1,21 @@
 <x-layout>
-    <x-slot:title>
 
-    </x-slot:title>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+    <div class="flex items-center justify-center min-h-screen bg-gray-100"
+        style="background-image: url('{{ asset('image/latar.jpg') }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;">
 
-            <h2 class="text-3xl font-semibold text-center">{{ $title }}</h2>
+            <div class="w-full max-w-md p-6 space-y-4 bg-white border border-white shadow-2xl bg-opacity-30 backdrop-blur-md rounded-2xl border-opacity-20 shadow-blue-100/50">
+
+            <h2 class="text-3xl font-semibold text-center">Login</h2>
             <form action="{{ route('login.post') }}" method="post">
                 @csrf
 
                 @if(session('error'))
-                <div class="p-3 text-red-500 rounded alert alert-error bg-red-50">
-                    {{ session('error') }}
-                </div>
+                    <div class="p-2 text-sm text-red-500 bg-opacity-50 rounded alert alert-error bg-red-50">
+                        {{ session('error') }}
+                    </div>
                 @endif
 
                 <div class="form-control">
@@ -43,11 +46,11 @@
                 </div>
 
                 <div class="mt-6 form-control">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="text-white btn btn-primary">
                         {{ __('Login') }}
                     </button>
                 </div>
-                <div class="mt-4 text-sm text-center text-gray-600">
+                <div class="mt-4 text-sm text-center text-gray-900">
                     Tidak punya akun?
                     <a href="{{ route('register') }}" class="ml-1 font-semibold text-blue-500 hover:text-blue-600">
                         Daftar

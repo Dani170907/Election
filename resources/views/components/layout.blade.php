@@ -11,8 +11,10 @@
 
     <!-- Navigation -->
     <x-header>
-        {{ $title }}
+        {{-- {{ $title }} --}}
     </x-header>
+
+
 
     <!-- Konten -->
     <main>
