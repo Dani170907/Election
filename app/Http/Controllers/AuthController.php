@@ -50,7 +50,7 @@ class AuthController extends Controller
         if(Auth::attempt($access)) {
             if ($user->role === 'student') {
                 return redirect()->intended('voter')
-                ->withSuccess('Selamat Datang' . $user->name);
+                ->withSuccess('Selamat Datang ' . $user->name);
             } else if ($user->role === 'admin') {
                 return redirect()->intended('admin')->withSuccess('Berhasil Login');
             }
@@ -89,7 +89,7 @@ class AuthController extends Controller
         if (Auth::check() && Auth::user()->role === 'admin') {
             $results = Candidate::withCount('votes')->orderBy('votes_count', 'desc')->get();
             $totalVotes = $results->sum('votes_count');
-            
+
             return view('admin.index', compact('results', 'totalVotes'));
         }
 
