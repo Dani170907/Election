@@ -9,12 +9,10 @@
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigasi-->
     <x-header>
         {{-- {{ $title }} --}}
     </x-header>
-
-
 
     <!-- Konten -->
     <main>

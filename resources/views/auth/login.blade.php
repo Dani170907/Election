@@ -1,7 +1,7 @@
 <x-layout>
 
     <div class="flex items-center justify-center min-h-screen bg-gray-100"
-        style="background-image: url('{{ asset('image/latar.jpg') }}');
+        style="background-image: url('{{ asset('image/bg.png') }}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;">
