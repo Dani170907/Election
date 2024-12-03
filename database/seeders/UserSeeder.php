@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -13,28 +13,20 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            [
-                'name' => 'Dani Ramadhan',
-                'nis' => '22.6392',
+        $startNis = 226385;
+        $endNis = 226424;
+        $users = [];
+
+        for ($nis = $startNis; $nis <= $endNis; $nis++) {
+            $users[] = [
+                'name' => fake('id')->name,
+                'nis' => substr_replace($nis, '.', 2, 0),
                 'password' => bcrypt('123'),
                 'role' => 'student',
                 'created_at' => now(),
-            ],
-            [
-                'name' => 'Farel Ahmad',
-                'nis' => '22.6393',
-                'password' => bcrypt('123'),
-                'role' => 'student',
-                'created_at' => now(),
-            ],
-            [
-                'name' => 'Fiqih Hadinata',
-                'nis' => '22.6394',
-                'password' => bcrypt('123'),
-                'role' => 'student',
-                'created_at' => now(),
-            ],
-        ]);
+            ];
+        }
+
+        DB::table('users')->insert($users);
     }
 }

@@ -1,7 +1,7 @@
 <div class="fixed top-0 left-0 z-50 w-full shadow-md navbar bg-base-100">
     <!-- bagian kiri -->
     <div class="navbar-start">
-        <img src="{{ asset('image/SA.png') }}" alt="Logo" class="hidden object-cover w-10 h-10 lg:inline-block md:h-10 md:w-10">
+        <img src="{{ asset('image/SA.png') }}" alt="Logo" class="hidden object-cover w-12 h-12 lg:inline-block md:h-12 md:w-12">
 
         <details class="dropdown lg:hidden">
             <summary class="btn btn-ghost btn-sm btn-circle">
