@@ -4,6 +4,7 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\CandidateController;
 
 // $admin = 'admin';
@@ -51,6 +52,6 @@ Route::middleware(['auth'])->group(function (){
 
 });
 
-Route::get('/chartjs', function () {
-    return view('chartjs');
-});
+
+
+Route::get('/chart', [ChartController::class, 'index']);

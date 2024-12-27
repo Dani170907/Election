@@ -1,4 +1,8 @@
 <x-layout>
+    <script>
+        const apiResultsUrl = "{{ route('api.results') }}";
+    </script>
+
     <div class="container px-4 py-8 mx-auto">
         <div class="mb-8 text-center">
             <h1 class="mb-3 text-2xl font-bold md:text-3xl">Hasil Sementara</h1>
@@ -12,6 +16,8 @@
             </div>
             @endif
         </div>
+
+        <div id="chart" class="w-full h-64"></div>
 
         <div class="overflow-x-auto">
             <table class="table w-full table-zebra">
@@ -63,6 +69,4 @@
             </a>
         </div>
     </div>
-    <canvas id="myChart" width="400" height="400"></canvas>
 </x-layout>
-

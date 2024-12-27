@@ -47,13 +47,13 @@ class VoteController extends Controller
 
         // ambil data vote yang dilakukan user
         $results = Candidate::withCount('votes')
-                    ->orderBy('votes_count', 'desc')
-                    ->get();
+            ->orderBy('votes_count', 'desc')
+            ->get();
 
         $totalVotes = $results->sum('votes_count');
 
         return view('voter.results', compact('candidates', 'results', 'totalVotes'), [
-            'candidate'=> $candidates,
+            'candidate' => $candidates,
             'title' => 'Hasil Voting Sementara',
         ]);
     }
@@ -63,8 +63,8 @@ class VoteController extends Controller
     {
         // ambil semua data dari candidates dan hitung data votes
         $results = Candidate::withCount('votes')
-                    ->orderBy('votes_count', 'desc')
-                    ->get();
+            ->orderBy('votes_count', 'desc')
+            ->get();
 
         $totalVotes = $results->sum('votes_count');
 
@@ -73,15 +73,15 @@ class VoteController extends Controller
                 'id' => $candidate->id,
                 'name' => $candidate->name,
                 'votes_count' => $candidate->votes_count,
-                'percentage' => ($candidate->votes_count > 0) ?($candidate->votes_count / $totalVotes * 100) : 0,
+                'percentage' => ($candidate->votes_count > 0) ? ($candidate->votes_count / $totalVotes * 100) : 0,
             ];
         });
 
         return response()->json([
             'success' => true,
-            'massage' => 'Data voting berhasil didapatkan',
+            'message' => 'Data voting berhasil didapatkan',
             'statusCode' => 200,
-            'data'=> $data,
+            'data' => $data,
             'total_votes' => $totalVotes,
 
         ]);
@@ -106,7 +106,7 @@ class VoteController extends Controller
 
         return response()->json([
             'success' => true,
-            'massage' => 'Data detail kandidat berhasil didapatkan',
+            'message' => 'Data voting berhasil didapatkan',
             'statusCode' => 200,
             'data' => [
                 'id' => $candidate->id,

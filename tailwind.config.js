@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme';
+import typography from '@tailwindcss/typography';
+import daisyui from 'daisyui';
 
-const defaultTheme = require('tailwindcss/defaultTheme')
 export default {
     content: [
         './resources/**/*.blade.php',
@@ -13,8 +15,8 @@ export default {
         extend: {},
     },
     plugins: [
-        require('@tailwindcss/typography'),
-        require('daisyui'),
+        typography,
+        daisyui,
     ],
     daisyui: {
         themes: [
