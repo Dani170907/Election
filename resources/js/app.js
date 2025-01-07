@@ -1,2 +1,2 @@
 import './bootstrap';
-import './frappe-chart';
+import './chart.js';

@@ -11,8 +11,6 @@
 
         <div class="w-full max-w-6xl p-6 space-y-4 bg-white border border-white shadow-2xl bg-opacity-30 backdrop-blur-md rounded-2xl border-opacity-20 shadow-blue-100/50">
             <h1 class="mb-4 text-2xl font-semibold text-gray-900">Data Voting</h1>
-            <div id="chart" class="max-w-3xl p-5 mx-auto bg-gray-100 rounded-lg shadow-lg"></div>
-
             <div class="mb-4 text-gray-800">
                 <p>Total Kandidat: {{ $results->count() }}</p>
                 <p>Total Pemilih: {{ $totalVotes }}</p>

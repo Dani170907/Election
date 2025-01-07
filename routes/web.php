@@ -52,6 +52,5 @@ Route::middleware(['auth'])->group(function (){
 
 });
 
-
-
-Route::get('/chart', [ChartController::class, 'index']);
+Route::get('/public/results', [ChartController::class, 'index']);
+Route::get('/public/candidate/{id}', [ChartController::class, 'candidate'])->name('public.candidate');
