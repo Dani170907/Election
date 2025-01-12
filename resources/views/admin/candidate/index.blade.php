@@ -1,18 +1,18 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-    <x-navbar>
-        @include('components.navbar')
-    </x-navbar>
+    @include('components.navbar')
 
-    <div class="flex items-center justify-center min-h-screen bg-gray-100" style="background-image: url('{{ asset('image/bg.png') }}');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;">
+    <div class="flex items-center justify-center min-h-screen pt-16 bg-gray-100"
+    style="background-image: url('{{ asset('image/bg.png') }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;">
+
 
         <div class="w-full max-w-6xl p-6 space-y-4 bg-white border border-white shadow-2xl bg-opacity-30 backdrop-blur-md rounded-2xl border-opacity-20 shadow-blue-100/50">
             <div class="flex items-center justify-between mb-4">
                 <h1 class="text-2xl font-semibold text-gray-900">Kelola Kandidat</h1>
-                <a href="{{ route('admin.candidate.create') }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('admin.candidate.create') }}" class="text-white bg-green-500 btn btn-sm">
                     + Tambah Kandidat
                 </a>
             </div>

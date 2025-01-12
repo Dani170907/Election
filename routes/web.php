@@ -7,10 +7,6 @@ use App\Http\Controllers\VoteController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\CandidateController;
 
-// $admin = 'admin';
-// $candidate = 'candidate';
-// $voter = 'voter';
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -52,5 +48,5 @@ Route::middleware(['auth'])->group(function (){
 
 });
 
-Route::get('/public/results', [ChartController::class, 'index']);
-Route::get('/public/candidate/{id}', [ChartController::class, 'candidate'])->name('public.candidate');
+Route::get('/public/results', [ChartController::class, 'index'])->name('public.results');
+Route::get('/public/detailsCandidates', [ChartController::class, 'detailsCandidates'])->name('public.detailsCandidates');

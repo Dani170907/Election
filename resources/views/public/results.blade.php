@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Suara Kandidat</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+<x-layout>
 
-    <h1>Hasil Voting Sementara</h1>
-    <canvas id="voteChart" width="400" height="200"></canvas>
+        <div class="container p-6 mx-auto">
+            <div class="mb-6 text-center">
+                <h1 class="mb-6 text-3xl font-bold">Hasil Voting Sementara</h1>
+                <a href="{{ route("public.detailsCandidates") }}"
+                class="btn btn-outline">
+                    Lihat Detail Kandidat
+                </a>
+            </div>
+            <div class="max-w-4xl p-4 mx-auto bg-white rounded-lg shadow-md">
+                <canvas id="voteChart"></canvas>
+            </div>
+        </div>
+
 
     <script>
         // ambil data api dari url
@@ -28,8 +30,8 @@
                 // buat chart
                 const ctx = document.getElementById('voteChart').getContext('2d');
                 new Chart(ctx, {
-                    type: 'bar',
-                    data: {
+                    type: 'bar'
+                    , data: {
                         // ambil nama kandidat
                         labels: labels, // nama kandidat
                         datasets: [{
@@ -42,19 +44,19 @@
                                 , 'rgba(75, 192, 192, 0.2)'
                                 , 'rgba(153, 102, 255, 0.2)'
                                 , 'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
+                            ]
+                            , borderColor: [
                                 'rgba(255, 99, 132, 1)'
                                 , 'rgba(54, 162, 235, 1)'
                                 , 'rgba(255, 206, 86, 1)'
                                 , 'rgba(75, 192, 192, 1)'
                                 , 'rgba(153, 102, 255, 1)'
                                 , 'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
+                            ]
+                            , borderWidth: 1
                         }]
-                    },
-                    options: {
+                    }
+                    , options: {
                         scales: {
                             y: {
                                 beginAtZero: true
@@ -70,6 +72,4 @@
             });
 
     </script>
-</body>
-</html>
-
+</x-layout>
