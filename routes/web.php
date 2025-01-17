@@ -25,6 +25,7 @@ Route::get('/api/candidate/{id}', [VoteController::class, 'candidateApi'])->name
 Route::middleware(['auth'])->group(function (){
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+    // grup untuk admin
     Route::middleware(['admin'])->group(function () {
         // Dashboard dan Logout
         Route::get('admin', [AuthController::class, 'dashboard'])->name('dashboard');
@@ -49,4 +50,6 @@ Route::middleware(['auth'])->group(function (){
 });
 
 Route::get('/public/results', [ChartController::class, 'index'])->name('public.results');
-Route::get('/public/detailsCandidates', [ChartController::class, 'detailsCandidates'])->name('public.detailsCandidates');
+Route::get('public/candidate/{id}', function ($id) {
+    return view('public.candidate', ['id' => $id]);
+})->name('public.candidate');

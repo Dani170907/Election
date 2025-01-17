@@ -10,18 +10,34 @@ class ChartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    // amlbli data kandidat
+    private function getCandidates()
     {
-        return view('public.results');
+        // ambil semua data kandidat
+        $candidates = Candidate::all();
+
+        // ambil data votes dan hitung data
+        $results = Candidate::withCount('votes')->orderBy('votes_count', 'desc')->get();
+
+        // hitung total votes
+        $totalVotes = $results->sum('votes_count');
+
+        return compact('candidates', 'results', 'totalVotes');
     }
 
-    public function detailsCandidates()
+    public function index()
     {
-        $candidates = Candidate::all();
-        return view('public.detailsCandidates', compact('candidates'));
+        $data = $this->getCandidates();
+
+        return view('public.results', $data);
     }
-    // public function candidate($id)
-    // {
-    //     return view('public.candidate', compact('id'));
-    // }
+
+    public function candidate()
+    {
+        $data = $this->getCandidates();
+
+        return view('public.candidate', $data);
+    }
 }
+
+

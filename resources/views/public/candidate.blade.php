@@ -1,56 +1,42 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hasil Voting Kandidat</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+{{-- <x-layout>
 
-    <h1>Hasil Voting Sementara</h1>
-    <canvas id="voteChart" width="400" height="200"></canvas>
+    <div class="container">
+        <h1>Detail Kandidat</h1>
+        <div id="candidateDetail">
+            <p>Loading...</p>
+        </div>
+    </div>
 
     <script>
-        const candidateId = {{ $id }};
-        const apiUrl = `/api/public-results/${candidateId}`; // URL API publik untuk data kandidat
+        // Ambil detail kandidat dari API
+        const candidateId = @json($id); // ID kandidat dari route parameter
+        const apiUrl = `/api/candidate/${candidateId}`;
 
-        // ambil data api dari url
         fetch(apiUrl)
-            .then(response => response.json()) // Konversi response ke JSON
+            .then(response => response.json())
             .then(data => {
-                // Ambil data dari response API
-                const label = data.name; // Nama kandidat
-                const votes = data.votes_count; // Jumlah suara
-
-                // Buat chart
-                const ctx = document.getElementById('voteChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: [label], // Nama kandidat sebagai label
-                        datasets: [{
-                            label: 'Jumlah Suara',
-                            data: [votes], // Jumlah suara kandidat
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
+                if (data.success) {
+                    const candidate = data.data;
+                    document.getElementById('candidateDetail').innerHTML = `
+                <div class="card">
+                    <img src="${candidate.photo}" alt="${candidate.name}" class="card-img-top" style="max-height: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title">${candidate.name}</h5>
+                        <p>Total Votes: ${candidate.total_votes}</p>
+                        <p>Percentage: ${candidate.persentage}</p>
+                        </div>
+                        </div>
+                        `;
+                } else {
+                    document.getElementById('candidateDetail').innerText = data.message;
+                }
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Error fetching candidate details:', error);
+                document.getElementById('candidateDetail').innerText = 'Failed to load candidate details.';
             });
+
     </script>
-</body>
-</html>
+
+</x-layout>
  --}}

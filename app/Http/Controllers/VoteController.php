@@ -74,6 +74,7 @@ class VoteController extends Controller
                 'name' => $candidate->name,
                 'votes_count' => $candidate->votes_count,
                 'percentage' => ($candidate->votes_count > 0) ? ($candidate->votes_count / $totalVotes * 100) : 0,
+                'image' => $candidate->photo,
             ];
         });
 
@@ -83,7 +84,6 @@ class VoteController extends Controller
             'statusCode' => 200,
             'data' => $data,
             'total_votes' => $totalVotes,
-
         ]);
     }
 
@@ -112,18 +112,10 @@ class VoteController extends Controller
                 'id' => $candidate->id,
                 'name' => $candidate->name,
                 'total_votes' => $candidate->votes_count,
+                'image' => $candidate->photo,
                 'persentage' => $persentage . '%',
             ],
         ]);
     }
 
-
-
-    // public function reset()
-    // {
-    //     $id->delete();
-
-    //     return redirect()->route('candidate.index')
-    //     ->with('success', 'Data Vote berhasil di Reset');
-    // }
 }
